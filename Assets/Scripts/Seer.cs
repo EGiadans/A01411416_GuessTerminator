@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Seer : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Seer : MonoBehaviour
     private int guess;
     private LevelManager levelManager;
 
-    public int attempts;
+    public int attempts = 5;
     public Text guessLabel;
 
     // Use this for initialization
@@ -24,33 +25,72 @@ public class Seer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     void StartGame()
     {
         min = 1;
         max = 1001;
+        guess = Random.Range(min, max);
+        //ShowGuess();
         NextGuess();
     }
 
     void NextGuess()
     {
+        /*
+        if (attempts == 0)
+        {
+            SceneManager.LoadScene("Win");
+        }
+        guess = UnityEngine.Random.Range(min, max);
+        attempts--;
+        ShowGuess();
+        */
+        /*
         guess = Random.Range(min, max);
         attempts--;
+        */
+        int inicio, centro, fin;
+        inicio = min;
+        fin = max;
+        
+        while (inicio <= fin)
+        {
+            centro = (inicio + fin) / 2;
+            if (centro == guess)
+            {
+                SceneManager.LoadScene("Lost");
+            }
+            else
+            {
+                if (guess < fin)
+                {
+                    fin = centro;
+                } else
+                {
+                    inicio = centro + 1; 
+                }
+            }
+        }
+        attempts--;
+
     }
 
     void ShowGuess()
     {
         if (attempts >= 0)
         {
-            guessLabel.text = "OF COURSE YOUR NUMBER IS " + guess;
+            guessLabel.text = "Is your number " + guess + "?";
         }
         else
         {
-            levelManager.LoadLevel("Win");
+            //levelManager.LoadLevel("Win");
+            SceneManager.LoadScene("Win");
         }
     }
+
 
     public void GuessHigher()
     {
@@ -68,7 +108,8 @@ public class Seer : MonoBehaviour
 
     public void CorrectGuess()
     {
-        levelManager.LoadLevel("Lost");
+        //levelManager.LoadLevel("Lost");
+        SceneManager.LoadScene("Lost");
     }
 
 

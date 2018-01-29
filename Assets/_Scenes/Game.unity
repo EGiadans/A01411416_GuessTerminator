@@ -527,10 +527,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114952235718078122, guid: 32be47ecda933d041b1037666bef40d3,
+      - m_Target: {fileID: 114876311932414974, guid: a38abed0086c94445b32ea95bac582b3,
           type: 2}
-        m_MethodName: LoadLevel
-        m_Mode: 5
+        m_MethodName: CorrectGuess
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
