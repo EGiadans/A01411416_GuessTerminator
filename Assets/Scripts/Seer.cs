@@ -37,7 +37,7 @@ public class Seer : MonoBehaviour
         NextGuess();
     }
 
-    void NextGuess()
+    void NextGuess() //Using Binary Search for a better A.I.
     {
         /*
         if (attempts == 0)
@@ -78,7 +78,7 @@ public class Seer : MonoBehaviour
 
     }
 
-    void ShowGuess()
+    void ShowGuess() //When attempts are less than 0, the A.I. loses
     {
         if (attempts >= 0)
         {
@@ -92,14 +92,14 @@ public class Seer : MonoBehaviour
     }
 
 
-    public void GuessHigher()
+    public void GuessHigher() //If the guess is lower than the showed
     {
         min = guess + 1;
         NextGuess();
         ShowGuess();
     }
 
-    public void GuessLower()
+    public void GuessLower() //If the guess is lower than the showed
     {
         max = guess;
         NextGuess();
